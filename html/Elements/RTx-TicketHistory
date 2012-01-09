@@ -11,7 +11,7 @@
 	</tr>
 
 % for my $entry(reverse(@{ $session{'RTx-HistoryComponent'} })) {
-% my $link = RT->Config->Get('WebURL'). '/Ticket/Display.html?id='. $entry->{'Ticket'}->Id;
+% my $link = RT->Config->Get('WebURL'). 'Ticket/Display.html?id='. $entry->{'Ticket'}->Id;
 	<tr class="<% (++$i % 2) ? 'oddline' : 'evenline' %>">
 		<td align="right"><a href="<%$link%>"><% $entry->{'Ticket'}->Id %></a></td>
 		<td align="left"><a href="<%$link%>"><% $entry->{'Ticket'}->Subject %></a></td>
