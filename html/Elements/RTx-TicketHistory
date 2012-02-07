@@ -14,7 +14,7 @@
 % my $link = RT->Config->Get('WebURL'). 'Ticket/Display.html?id='. $entry->{'Ticket'}->Id;
 	<tr class="<% (++$i % 2) ? 'oddline' : 'evenline' %>">
 		<td align="right"><a href="<%$link%>"><% $entry->{'Ticket'}->Id %></a></td>
-		<td align="left"><a href="<%$link%>"><% $entry->{'Ticket'}->Subject %></a></td>
+		<td align="left"><& .createSubject, Subject => $entry->{'Ticket'}->Subject, href => $link &></td>
 		<td align="right"><a href="<%$link%>"><% $entry->{'Ticket'}->Status %></a></td>
 		<td align="right"><a href="<%$link%>"><% $entry->{'Ticket'}->QueueObj->Name %></a></td>
 		<td align="right"><a href="<%$link%>"><% $entry->{'Time'}->DiffAsString($now) %></a></td>
@@ -24,6 +24,20 @@
 </table>
 
 </&>
+<%def .createSubject>
+	<a href="<% $href %>" title="<% $Subject %>"><% $sub %></a>
+	<%init>
+		my $sub = $Subject;
+		if (length($sub) > $length) {
+			$sub = substr($sub, 0, $length). '...';
+		}
+	</%init>
+	<%args>
+		$Subject
+		$href
+		$length => 30
+	</%args>
+</%def>
 <%init>
 
 if (!$session{'RTx-HistoryComponent'} || !ref($session{'RTx-HistoryComponent'}) eq 'ARRAY') {
