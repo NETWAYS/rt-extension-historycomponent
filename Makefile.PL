@@ -1,10 +1,12 @@
-use strict;
 use inc::Module::Install;
 
-RTx('RTx-HistoryComponent');
-author('Marius Hein <marius.hein@netways.de>');
-version('1.0');
-license('gpl');
+RTx     'RT-Extension-HistoryComponent';
+license 'gpl_2';
+repository 'https://github.com/netways/rt-extension-historycomponent';
+version_from 'lib/RT/Extension/HistoryComponent.pm';
+author_from 'lib/RT/Extension/HistoryComponent.pm';
 
-&WriteAll;
+requires_rt '4.4.2';
 
+sign;
+WriteAll;
