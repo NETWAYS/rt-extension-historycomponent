@@ -1,6 +1,8 @@
+package RT::Extension::HistoryComponent;
+
+use 5.10.0;
 use strict;
 use warnings;
-package RT::Extension::HistoryComponent;
 
 our $VERSION = '0.01';
 
@@ -50,7 +52,7 @@ Add this line:
 
 =head1 AUTHOR
 
-NETWAYS GmbH <lt>info@netways.de<gt>
+NETWAYS GmbH <lt>support@netways.de<gt>
 
 =for html <p>All bugs should be reported via email to <a
 href="mailto:bug-RT-Extension-HistoryComponent@rt.cpan.org">bug-RT-Extension-HistoryComponent@rt.cpan.org</a>

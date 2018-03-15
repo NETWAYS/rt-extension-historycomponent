@@ -1,12 +1,15 @@
 NAME
-    RT-Extension-HistoryComponent - Provides a portlet to list recently viewed tickets
+    RT-Extension-HistoryComponent - Provides a portlet to list recently
+    viewed tickets
 
 DESCRIPTION
-    RT already got a way to see recently viewed tickets. However, it's buried underneath three main menu levels
-    and easy to miss.
+    RT already got a way to see recently viewed tickets. However, it's
+    buried underneath three main menu levels and easy to miss.
 
-    This extension provides a simple portlet that looks no other than any other ticket-list portlet. But it moves
-    the ticket listing from the mentioned main menu to a more visible and accessible location on "RT at a glance".
+    This extension provides a simple portlet that looks no other than any
+    other ticket-list portlet. But it moves the ticket listing from the
+    mentioned main menu to a more visible and accessible location on "RT at
+    a glance".
 
     No configuration required.
 
@@ -30,7 +33,7 @@ INSTALLATION
     Restart your webserver
 
 AUTHOR
-    NETWAYS GmbH <info@netways.de>
+    NETWAYS GmbH <lt>support@netways.de<gt>
 
     All bugs should be reported via email to
         bug-RT-Extension-HistoryComponent@rt.cpan.org
@@ -42,3 +45,4 @@ LICENSE AND COPYRIGHT
     This is free software, licensed under:
 
       The GNU General Public License, Version 2, June 1991
+
