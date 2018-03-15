@@ -35,10 +35,10 @@ INSTALLATION
 AUTHOR
     NETWAYS GmbH <lt>support@netways.de<gt>
 
-    All bugs should be reported via email to
-        bug-RT-Extension-HistoryComponent@rt.cpan.org
-    or via the web at
-        http://rt.cpan.org/Public/Dist/Display.html?Name=RT-Extension-HistoryComponent
+BUGS
+    All bugs should be reported on GitHub
+    <https://github.com/netways/rt-extension-historycomponent>.
+
 LICENSE AND COPYRIGHT
     This software is Copyright (c) 2018 by NETWAYS GmbH
 
