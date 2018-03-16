@@ -1,10 +1,10 @@
 package RT::Extension::HistoryComponent;
 
-use 5.10.0;
+use 5.010_001;
 use strict;
 use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '1.0.0';
 
 =head1 NAME
 
