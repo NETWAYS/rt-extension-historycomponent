@@ -12,7 +12,9 @@
 
 % for ($session{'CurrentUser'}->RecentlyViewedTickets()) {
 %	my ($ticketId, $timestamp) = @$_;
-%	my $Ticket = LoadTicket($ticketId);
+%   my $Ticket = RT::Ticket->new($session{'CurrentUser'});
+%   $Ticket->Load($ticketId);
+%   next unless ($Ticket->Id);
 % 	my $link = RT->Config->Get('WebURL') . 'Ticket/Display.html?id=' . $Ticket->Id;
 
 	<tr class="<% (++$i % 2) ? 'oddline' : 'evenline' %>">
