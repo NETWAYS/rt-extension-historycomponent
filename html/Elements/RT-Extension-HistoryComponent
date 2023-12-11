@@ -10,13 +10,12 @@
         <th class="collection-as-table"><% loc('Last Seen') %></th>
     </tr>
 
-% for ($session{'CurrentUser'}->RecentlyViewedTickets()) {
-%	my ($ticketId, $timestamp) = @$_;
+% for (@$data_ref) {
+%   my ($ticketId, $timestamp) = @$_;
 %   my $Ticket = RT::Ticket->new($session{'CurrentUser'});
 %   $Ticket->Load($ticketId);
 %   next unless ($Ticket->Id);
-% 	my $link = RT->Config->Get('WebURL') . 'Ticket/Display.html?id=' . $Ticket->Id;
-
+%   my $link = RT->Config->Get('WebURL') . 'Ticket/Display.html?id=' . $Ticket->Id;
     <tr class="<% (++$i % 2) ? 'oddline' : 'evenline' %>">
         <td class="collection-as-table" align="right"><a href="<% $link %>"><% $ticketId %></a></td>
         <td class="collection-as-table"><& .createSubject, Subject => $Ticket->Subject || loc('(No subject)'), href => $link &></td>
@@ -48,6 +47,15 @@
 
 if (!exists $session{'CurrentUser'}) {
     return;
+}
+
+my $data_ref = undef;
+my $attribute = $session{'CurrentUser'}->FirstAttribute('RecentlyViewedTickets');
+
+if ($attribute) {
+  $data_ref = $attribute->Content;
+} else {
+  return;
 }
 
 my $i = 0;
