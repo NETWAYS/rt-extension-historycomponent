@@ -12,11 +12,12 @@ RT-Extension-HistoryComponent - Provides a portlet to list recently viewed ticke
 
 =head1 DESCRIPTION
 
-RT already got a way to see recently viewed tickets. However, it's buried underneath three main menu levels
+RT already got a way to see recently viewed tickets. However, it's tucked away in the Tickets dropdown menu
 and easy to miss.
 
 This extension provides a simple portlet that looks no other than any other ticket-list portlet. But it moves
-the ticket listing from the mentioned main menu to a more visible and accessible location on "RT at a glance".
+the ticket listing from the mentioned menu to a more visible and accessible location: the homepage dashboard,
+where it can be added like any other component.
 
 No configuration required.
 
@@ -60,7 +61,7 @@ All bugs should be reported on L<GitHub|https://github.com/netways/rt-extension-
 
 =head1 LICENSE AND COPYRIGHT
 
-This software is Copyright (c) 2018 by NETWAYS GmbH
+This software is Copyright (c) 2018-2026 by NETWAYS GmbH
 
 This is free software, licensed under:
 
