@@ -14,13 +14,12 @@ DESCRIPTION
     No configuration required.
 
 RT VERSION
-    Works with RT 6. For RT 4.4 use version 2.x of this
-    extension.
+    Works with RT 6. For RT 4.4 use version 2.x of this extension.
 
 INSTALLATION
-    perl Makefile.PL
-    make
-    make install
+    "perl Makefile.PL"
+    "make"
+    "make install"
         May need root permissions
 
     Edit your /opt/rt6/etc/RT_SiteConfig.pm
@@ -45,4 +44,5 @@ LICENSE AND COPYRIGHT
 
     This is free software, licensed under:
 
-    The GNU General Public License, Version 2, June 1991
+      The GNU General Public License, Version 2, June 1991
+
