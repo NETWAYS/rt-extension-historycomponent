@@ -4,7 +4,7 @@ use 5.010_001;
 use strict;
 use warnings;
 
-our $VERSION='2.0.0';
+our $VERSION='3.0.0';
 
 =head1 NAME
 
@@ -22,7 +22,7 @@ No configuration required.
 
 =head1 RT VERSION
 
-Works with RT 4.4.2
+Works with RT 6. For RT 4.4 use version 2.x of this extension.
 
 =head1 INSTALLATION
 
@@ -36,7 +36,7 @@ Works with RT 4.4.2
 
 May need root permissions
 
-=item Edit your F</opt/rt4/etc/RT_SiteConfig.pm>
+=item Edit your F</opt/rt6/etc/RT_SiteConfig.pm>
 
 Add this line:
 
@@ -44,7 +44,7 @@ Add this line:
 
 =item Clear your mason cache
 
-    rm -rf /opt/rt4/var/mason_data/obj
+    rm -rf /opt/rt6/var/mason_data/obj
 
 =item Restart your webserver
 

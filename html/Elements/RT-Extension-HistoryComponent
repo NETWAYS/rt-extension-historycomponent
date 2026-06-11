@@ -1,31 +1,37 @@
-<&| /Widgets/TitleBox, title => loc('My last [_1] tickets', 10) &>
+<&| /Widgets/TitleBox, title => loc('My last [_1] tickets', 10), class => 'fullwidth' &>
 
-<table cellspacing="0" width="100%" class="ticket-list collection-as-table">
+<div class="table-responsive">
+<table class="table <% RT->Config->Get('TableAccent') %> collection-as-table">
 
+    <thead>
     <tr>
-        <th class="collection-as-table" style="text-align: right;">#</th>
+        <th class="collection-as-table text-end">#</th>
         <th class="collection-as-table"><% loc('Subject') %></th>
         <th class="collection-as-table"><% loc('Status') %></th>
         <th class="collection-as-table"><% loc('Queue') %></th>
         <th class="collection-as-table"><% loc('Last Seen') %></th>
     </tr>
+    </thead>
 
+    <tbody>
 % for (@$data_ref) {
 %   my ($ticketId, $timestamp) = @$_;
 %   my $Ticket = RT::Ticket->new($session{'CurrentUser'});
 %   $Ticket->Load($ticketId);
 %   next unless ($Ticket->Id);
-%   my $link = RT->Config->Get('WebURL') . 'Ticket/Display.html?id=' . $Ticket->Id;
-    <tr class="<% (++$i % 2) ? 'oddline' : 'evenline' %>">
-        <td class="collection-as-table" align="right"><a href="<% $link %>"><% $ticketId %></a></td>
+%   my $link = RT->Config->Get('WebPath') . '/Ticket/Display.html?id=' . $Ticket->Id;
+    <tr>
+        <td class="collection-as-table text-end"><a href="<% $link %>"><% $ticketId %></a></td>
         <td class="collection-as-table"><& .createSubject, Subject => $Ticket->Subject || loc('(No subject)'), href => $link &></td>
-        <td class="collection-as-table"><% $Ticket->Status %></td>
+        <td class="collection-as-table"><% loc($Ticket->Status) %></td>
         <td class="collection-as-table"><% $Ticket->QueueObj->Name %></td>
         <td class="collection-as-table"><% $now->DiffAsString($timestamp) %></td>
     </tr>
 % }
+    </tbody>
 
 </table>
+</div>
 
 </&>
 
@@ -58,8 +64,7 @@ if ($attribute) {
   return;
 }
 
-my $i = 0;
-my $now = new RT::Date($session{'CurrentUser'});
+my $now = RT::Date->new($session{'CurrentUser'});
 
 $now->SetToNow();
 

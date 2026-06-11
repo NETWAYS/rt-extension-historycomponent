@@ -33,7 +33,7 @@ You may also send us an email to [support@netways.de](mailto:support@netways.de)
 
 ## Requirements
 
-- RT 4.4.2
+- RT 6
 
 ## Installation
 
@@ -56,7 +56,7 @@ Navigate into the source directory and install the extension. (May need root per
     make
     make install
 
-Edit your `/opt/rt4/etc/RT_SiteConfig.pm`
+Edit your `/opt/rt6/etc/RT_SiteConfig.pm`
 
 Add this line:
 
@@ -64,6 +64,6 @@ Add this line:
 
 Clear your mason cache:
 
-    rm -rf /opt/rt4/var/mason_data/obj
+    rm -rf /opt/rt6/var/mason_data/obj
 
 Restart your webserver.
