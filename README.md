@@ -48,8 +48,8 @@ Git clone:
 Tarball download:
 
     cd /usr/local/src
-    wget https://github.com/NETWAYS/rt-extension-historycomponent/archive/master.zip
-    unzip master.zip
+    wget https://github.com/NETWAYS/rt-extension-historycomponent/archive/main.zip
+    unzip main.zip
 
 Navigate into the source directory and install the extension. (May need root permissions.)
 
