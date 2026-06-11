@@ -22,7 +22,7 @@
     <tr>
         <td class="collection-as-table text-end"><a href="<% $link %>"><% $Ticket->Id %></a></td>
         <td class="collection-as-table"><a href="<% $link %>" title="<% $subject %>"><% $short %></a></td>
-        <td class="collection-as-table"><% loc($Ticket->Status) %></td>
+        <td class="collection-as-table"><& /Elements/StatusBadge, Object => $Ticket &></td>
         <td class="collection-as-table"><% $Ticket->QueueObj->Name %></td>
         <td class="collection-as-table"><% $now->DiffAsString($timestamp) %></td>
     </tr>
