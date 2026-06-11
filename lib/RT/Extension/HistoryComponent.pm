@@ -4,7 +4,7 @@ use 5.010_001;
 use strict;
 use warnings;
 
-our $VERSION='2.0.0';
+our $VERSION='3.0.0';
 
 =head1 NAME
 
@@ -12,17 +12,18 @@ RT-Extension-HistoryComponent - Provides a portlet to list recently viewed ticke
 
 =head1 DESCRIPTION
 
-RT already got a way to see recently viewed tickets. However, it's buried underneath three main menu levels
+RT already got a way to see recently viewed tickets. However, it's tucked away in the Tickets dropdown menu
 and easy to miss.
 
 This extension provides a simple portlet that looks no other than any other ticket-list portlet. But it moves
-the ticket listing from the mentioned main menu to a more visible and accessible location on "RT at a glance".
+the ticket listing from the mentioned menu to a more visible and accessible location: the homepage dashboard,
+where it can be added like any other component.
 
 No configuration required.
 
 =head1 RT VERSION
 
-Works with RT 4.4.2
+Works with RT 6. For RT 4.4 use version 2.x of this extension.
 
 =head1 INSTALLATION
 
@@ -36,7 +37,7 @@ Works with RT 4.4.2
 
 May need root permissions
 
-=item Edit your F</opt/rt4/etc/RT_SiteConfig.pm>
+=item Edit your F</opt/rt6/etc/RT_SiteConfig.pm>
 
 Add this line:
 
@@ -44,7 +45,7 @@ Add this line:
 
 =item Clear your mason cache
 
-    rm -rf /opt/rt4/var/mason_data/obj
+    rm -rf /opt/rt6/var/mason_data/obj
 
 =item Restart your webserver
 
@@ -60,7 +61,7 @@ All bugs should be reported on L<GitHub|https://github.com/netways/rt-extension-
 
 =head1 LICENSE AND COPYRIGHT
 
-This software is Copyright (c) 2018 by NETWAYS GmbH
+This software is Copyright (c) 2018-2026 by NETWAYS GmbH
 
 This is free software, licensed under:
 
@@ -70,8 +71,8 @@ This is free software, licensed under:
 
 # Automatically extend $HomepageComponents. Avoids the need to
 # maintain the component list when installing this extension.
-my @components = @{$RT::Config->Get('HomepageComponents')};
+my @components = @{RT->Config->Get('HomepageComponents')};
 push(@components, 'RT-Extension-HistoryComponent');
-$RT::Config->Set('HomepageComponents', \@components);
+RT->Config->Set('HomepageComponents', \@components);
 
 1;

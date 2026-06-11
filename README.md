@@ -10,21 +10,22 @@
 
 ## About
 
-RT already got a way to see recently viewed tickets. However, it's buried underneath three main menu levels
+RT already got a way to see recently viewed tickets. However, it's tucked away in the Tickets dropdown menu
 and easy to miss.
 
 This extension provides a simple portlet that looks no other than any other ticket-list portlet. But it moves
-the ticket listing from the mentioned main menu to a more visible and accessible location on "RT at a glance".
+the ticket listing from the mentioned menu to a more visible and accessible location: the homepage dashboard,
+where it can be added like any other component.
 
 No configuration required.
 
-![History Component](doc/screenshot/component.jpg)
+<img src="doc/screenshot/component.png" alt="History Component" width="600">
 
 ## License
 
 This project is licensed under the terms of the GNU General Public License Version 2.
 
-This software is Copyright (c) 2018 by NETWAYS GmbH [support@netways.de](mailto:support@netways.de).
+This software is Copyright (c) 2018-2026 by NETWAYS GmbH [support@netways.de](mailto:support@netways.de).
 
 ## Support
 
@@ -33,7 +34,7 @@ You may also send us an email to [support@netways.de](mailto:support@netways.de)
 
 ## Requirements
 
-- RT 4.4.2
+- RT 6
 
 ## Installation
 
@@ -56,7 +57,7 @@ Navigate into the source directory and install the extension. (May need root per
     make
     make install
 
-Edit your `/opt/rt4/etc/RT_SiteConfig.pm`
+Edit your `/opt/rt6/etc/RT_SiteConfig.pm`
 
 Add this line:
 
@@ -64,6 +65,6 @@ Add this line:
 
 Clear your mason cache:
 
-    rm -rf /opt/rt4/var/mason_data/obj
+    rm -rf /opt/rt6/var/mason_data/obj
 
 Restart your webserver.
