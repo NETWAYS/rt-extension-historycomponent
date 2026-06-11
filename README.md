@@ -19,7 +19,7 @@ where it can be added like any other component.
 
 No configuration required.
 
-![History Component](doc/screenshot/component.png)
+<img src="doc/screenshot/component.png" alt="History Component" width="600">
 
 ## License
 
