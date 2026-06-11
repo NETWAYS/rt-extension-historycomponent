@@ -70,8 +70,8 @@ This is free software, licensed under:
 
 # Automatically extend $HomepageComponents. Avoids the need to
 # maintain the component list when installing this extension.
-my @components = @{$RT::Config->Get('HomepageComponents')};
+my @components = @{RT->Config->Get('HomepageComponents')};
 push(@components, 'RT-Extension-HistoryComponent');
-$RT::Config->Set('HomepageComponents', \@components);
+RT->Config->Set('HomepageComponents', \@components);
 
 1;

@@ -1,4 +1,4 @@
-<&| /Widgets/TitleBox, title => loc('My last [_1] tickets', 10), class => 'fullwidth' &>
+<&| /Widgets/TitleBox, title => loc('My last [_1] tickets', scalar @tickets), class => 'fullwidth' &>
 
 <div class="table-responsive">
 <table class="table <% RT->Config->Get('TableAccent') %> collection-as-table">
@@ -14,15 +14,14 @@
     </thead>
 
     <tbody>
-% for (@$data_ref) {
-%   my ($ticketId, $timestamp) = @$_;
-%   my $Ticket = RT::Ticket->new($session{'CurrentUser'});
-%   $Ticket->Load($ticketId);
-%   next unless ($Ticket->Id);
+% for my $entry (@tickets) {
+%   my ($Ticket, $timestamp) = @$entry;
 %   my $link = RT->Config->Get('WebPath') . '/Ticket/Display.html?id=' . $Ticket->Id;
+%   my $subject = $Ticket->Subject || loc('(No subject)');
+%   my $short = length $subject > 30 ? substr($subject, 0, 30) . '...' : $subject;
     <tr>
-        <td class="collection-as-table text-end"><a href="<% $link %>"><% $ticketId %></a></td>
-        <td class="collection-as-table"><& .createSubject, Subject => $Ticket->Subject || loc('(No subject)'), href => $link &></td>
+        <td class="collection-as-table text-end"><a href="<% $link %>"><% $Ticket->Id %></a></td>
+        <td class="collection-as-table"><a href="<% $link %>" title="<% $subject %>"><% $short %></a></td>
         <td class="collection-as-table"><% loc($Ticket->Status) %></td>
         <td class="collection-as-table"><% $Ticket->QueueObj->Name %></td>
         <td class="collection-as-table"><% $now->DiffAsString($timestamp) %></td>
@@ -35,33 +34,23 @@
 
 </&>
 
-<%def .createSubject>
-    <a href="<% $href %>" title="<% $Subject %>"><% $sub %></a>
-    <%init>
-        my $sub = $Subject;
-        if (length($sub) > $length) {
-            $sub = substr($sub, 0, $length) . '...';
-        }
-    </%init>
-    <%args>
-        $Subject
-        $href
-        $length => 30
-    </%args>
-</%def>
 <%init>
 
-if (!exists $session{'CurrentUser'}) {
-    return;
-}
+return unless $session{'CurrentUser'} && $session{'CurrentUser'}->Id;
 
-my $data_ref = undef;
-my $attribute = $session{'CurrentUser'}->FirstAttribute('RecentlyViewedTickets');
+my $attribute = $session{'CurrentUser'}->FirstAttribute('RecentlyViewedTickets')
+    or return;
+my $data_ref = $attribute->Content;
+return unless ref $data_ref eq 'ARRAY';
 
-if ($attribute) {
-  $data_ref = $attribute->Content;
-} else {
-  return;
+my @tickets;
+for my $entry (@$data_ref) {
+    next unless ref $entry eq 'ARRAY';
+    my ($ticketId, $timestamp) = @$entry;
+    my $Ticket = RT::Ticket->new($session{'CurrentUser'});
+    $Ticket->Load($ticketId);
+    next unless $Ticket->Id && $Ticket->CurrentUserCanSee;
+    push @tickets, [$Ticket, $timestamp];
 }
 
 my $now = RT::Date->new($session{'CurrentUser'});
